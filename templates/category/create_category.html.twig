@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% form_theme categoryForm "bootstrap_5_layout.html.twig" %}
+{% block body %}
+    <h1>Category</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(categoryForm) }}
+    {{ form_row(categoryForm.name) }}
+
+
+    <button type="submit" class="btn btn-success">OK</button>
+    {{ form_end(categoryForm) }}
+{% endblock %}

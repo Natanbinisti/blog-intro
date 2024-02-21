@@ -22,6 +22,9 @@ class Nem
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
+
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'nem', orphanRemoval: true)]
     private Collection $comments;
 
@@ -29,8 +32,10 @@ class Nem
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    #[ORM\ManyToOne(inversedBy: 'nem')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
 
     public function __construct()
     {
@@ -62,6 +67,18 @@ class Nem
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -108,15 +125,17 @@ class Nem
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCategory(): ?Category
     {
-        return $this->createdAt;
+        return $this->category;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    public function setCategory(?Category $category): static
     {
-        $this->createdAt = $createdAt;
+        $this->category = $category;
 
         return $this;
     }
+
+
 }

@@ -1,25 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path("app_nems") }}">Nems</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("app_create") }}">Créer</a>
-                </li>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="{{ path("app_nems") }}">Les nems</a>
+                <a class="nav-link" href="{{ path('create_nem') }}">Ajouter un nem</a>
+
                 {% if app.user %}
+                    <a class="nav-link" href="#">{{ app.user.email }}</a>
                     <a class="nav-link" href="{{ path('app_logout') }}">log out</a>
                 {% else %}
                     <a class="nav-link" href="{{ path('app_register') }}">Register</a>
-                    <a class="nav-link" href="{{ path('app_login') }}">Log in</a>
+                    <a class="nav-link" href="{{ path('app_login') }}">log in</a>
                 {% endif %}
-
-            </ul>
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </div>
         </div>
     </div>
 </nav>

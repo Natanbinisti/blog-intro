@@ -3,23 +3,17 @@
 {% block title %}Hello NemController!{% endblock %}
 
 {% block body %}
-    <div class="row">
-        {% for nem in nems %}
-            <div class='col-md-4 d-flex justify-content-center'>
 
-                <div class="card mb-3 " style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ nem.name }}</h5>
-                        <p class="card-text">Price : {{ nem.price }}</p>
-                        <p class="card-text">Created at : {{ nem.createdAt|date("m/d/Y") }}</p>
-                        <p class="card-text">Auteur : {{ nem.author.email }}</p>
+    {% for nem in nems %}
 
-                        <a href="{{ path("app_show", {id:nem.id}) }}" class="btn btn-primary">Voir</a>
-                    </div>
-                </div>
-            </div>
+        <div class="border border-dark">
+            <h3>{{ nem.name }}</h3>
+            <p><strong>Price : {{ nem.price }}€</strong></p>
+            <p><strong>Disponible depuis : {{ nem.createdAt|date("m/d/Y") }}</strong></p>
+            <p><strong>Inventé par : {{ nem.author.email }}</strong></p>
+            <a href="{{ path('show_nem', {id:nem.id}) }}" class="btn btn-primary">Voir</a>
 
-        {% endfor %}
-    </div>
+        </div>
 
+    {% endfor %}
 {% endblock %}
